@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#6d5cf5"/>
+    </linearGradient>
+  </defs>
+  <!-- burbuja -->
+  <path fill="url(#g)" d="M60 14c-27 0-46 18-46 41 0 13 6 24 16 31l-4 20 21-11c4 1 9 1 13 1 27 0 46-18 46-41S87 14 60 14z"/>
+  <!-- destellos -->
+  <g stroke="#3b82f6" stroke-width="5" stroke-linecap="round">
+    <line x1="88" y1="16" x2="92" y2="6"/>
+    <line x1="99" y1="24" x2="110" y2="20"/>
+    <line x1="100" y1="36" x2="110" y2="38"/>
+  </g>
+  <!-- cara -->
+  <rect x="30" y="38" width="60" height="38" rx="14" fill="#0b1220"/>
+  <path d="M42 62c2-6 8-8 12-3M66 62c2-6 8-8 12-3" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+</svg>
