@@ -8,6 +8,7 @@
     "client"
   ],
   "scripts": {
+    "setup": "node scripts/setup.js",
     "dev": "concurrently -n server,client -c blue,magenta \"npm run dev -w server\" \"npm run dev -w client\"",
     "build": "npm run build -w client",
     "start": "npm run start -w server",
@@ -20,5 +21,6 @@
   },
   "engines": {
     "node": ">=20"
-  }
+  },
+  "type": "module"
 }

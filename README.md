@@ -38,30 +38,59 @@ CHIPPI/
         └── utils/          # formato de moneda, fechas
 ```
 
-## Puesta en marcha
+## Instalación paso a paso (Windows / Mac)
+
+> Los comandos se escriben en una **terminal del sistema**, no en la ventana de Node (la que muestra `>`).
+> - **Windows**: abrí el menú Inicio, escribí `PowerShell` y abrilo.
+> - **Mac**: abrí `Terminal` (Aplicaciones → Utilidades → Terminal).
+
+**1. Instalar los dos programas necesarios (una sola vez)**
+
+- Node.js 20 o superior: https://nodejs.org (botón "LTS", siguiente-siguiente-instalar).
+- PostgreSQL 14 o superior: https://www.postgresql.org/download/ (instalador oficial). Durante la instalación te pide una **contraseña para el usuario `postgres`**: anotala, la vas a necesitar.
+
+**2. Descomprimir el proyecto y entrar a la carpeta desde la terminal**
+
+```powershell
+cd Desktop\chippi-crm        # Windows (ajustá la ruta a donde lo descomprimiste)
+cd ~/Desktop/chippi-crm       # Mac
+```
+
+**3. Instalar dependencias**
 
 ```bash
-# 1. Dependencias (instala server y client)
 npm install
+```
 
-# 2. Variables de entorno
-cp .env.example server/.env      # editar DATABASE_URL y JWT_SECRET
+**4. Configurar**
 
-# 3. Base de datos (PostgreSQL debe estar corriendo)
-createdb chippi                  # o crear la DB desde psql
-npm run db:migrate               # aplica schema.sql
-npm run db:seed                  # datos de demostración (opcional)
+```bash
+npm run setup
+```
 
-# 4. Desarrollo (API en :4000, cliente en :5173 con proxy a /api)
+Esto crea el archivo `server/.env`, crea la base de datos `chippi` y carga datos de ejemplo.
+Si falla con *"Usuario o contraseña incorrectos"*: abrí `server/.env` con el Bloc de notas, y en la línea `DATABASE_URL` reemplazá el segundo `postgres` por la contraseña que elegiste al instalar PostgreSQL:
+
+```
+DATABASE_URL=postgresql://postgres:TU_CONTRASEÑA@localhost:5432/chippi
+```
+
+Guardá y volvé a correr `npm run setup`.
+
+**5. Arrancar**
+
+```bash
 npm run dev
 ```
 
-Usuario demo (creado por el seed): `admin@chippi.app` / `Chippi2024!`
+Abrí http://localhost:5173 en el navegador. Usuario demo: `admin@chippi.app` / `Chippi2024!`.
+Para detener la app: `Ctrl + C` en la terminal.
 
-Otros comandos:
+### Otros comandos
 
 - `npm run db:reset` — borra todo, re-aplica el esquema y vuelve a cargar el seed.
-- `npm run build` — compila el cliente en `client/dist`; el servidor lo sirve automáticamente si existe (`npm start`).
+- `npm run db:migrate` / `npm run db:seed` — pasos individuales del setup.
+- `npm run build` — compila el cliente en `client/dist`; `npm start` sirve API y cliente juntos en el puerto 4000 (producción).
 
 ## API (hasta ahora)
 
